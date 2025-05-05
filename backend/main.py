@@ -2,7 +2,7 @@ from firebase_functions import https_fn
 from firebase_admin import initialize_app, messaging
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 from google.cloud import tasks_v2
 import google.auth
 
@@ -99,7 +99,7 @@ def schedule_notification(req: https_fn.Request) -> https_fn.Response:
         delay_seconds = int(request_data.get("delay", 60))
         
         # Calculate the scheduled time
-        scheduled_time = datetime.utcnow() + timedelta(seconds=delay_seconds)
+        scheduled_time = datetime.now(UTC) + timedelta(seconds=delay_seconds)
         
         # Construct the parent queue path
         parent = tasks_client.queue_path(project_id, location, queue_name)

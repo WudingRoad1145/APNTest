@@ -1,0 +1,12 @@
+specVersion: "v1"
+serviceId: "apn-test-functions"
+location: "us-central1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "apn-test-functions"
+      cloudSql:
+        instanceId: "\\apn-test-functions"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]
